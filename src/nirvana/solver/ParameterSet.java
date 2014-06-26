@@ -13,12 +13,18 @@ import org.apache.commons.lang3.tuple.Pair;
 public class ParameterSet implements ParameterContainable {
 	private Map<String,Pair<Class<?>, Object>> parameters= new HashMap<String,Pair<Class<?>, Object>>();
 
-	public void print() {
-		System.out.print("Parameters[");
+	@Override
+	public String toString() {
+		StringBuilder returnStr= new StringBuilder("Parameters[");
 		for (Entry<String, Pair<Class<?>, Object>> entry : parameters.entrySet()) {
-			System.out.print(entry.getKey() + "= " + entry.getValue().getRight().toString() + "; ");
+			returnStr.append(entry.getKey()).append("= ").append(entry.getValue().getRight().toString()).append("; ");
 		}
-		System.out.println("]");
+		return returnStr.append("]").toString();
+
+	}
+
+	public void print() {
+		System.out.print(this.toString());
 	}
 
 	@Override
