@@ -9,6 +9,7 @@ import java.util.Set;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+// Implements a Typed, Named, Unordered Set of Dynamic/Run-time parameters to be passed between two objects
 public class ParameterSet implements ParameterContainable {
 	private Map<String,Pair<Class<?>, Object>> parameters= new HashMap<String,Pair<Class<?>, Object>>();
 
