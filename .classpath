@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/64bin/lib/commons-lang3-3.1/commons-lang3-3.1.jar" sourcepath="C:/64bin/lib/commons-lang3-3.1/commons-lang3-3.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/64bin/lib/commons-lang3-3.1/commons-lang3-3.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
