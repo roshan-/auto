@@ -3,7 +3,9 @@ auto
 
 Framwork and Algorithms to Solve Computer Science Problems
 
-The UML diagram gives you a better understanding of the Design
+UML Diagram
+===========
+
 https://raw.githubusercontent.com/roshan-/auto/master/UML.png
 
 It demostrates
