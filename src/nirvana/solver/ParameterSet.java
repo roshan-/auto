@@ -6,40 +6,40 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
-// Implements a Typed, Named, Unordered Set of Dynamic/Run-time parameters to be passed between two objects
+/**
+ * @author Roshan Diwakar
+ */
+
 public class ParameterSet implements ParameterContainable {
-	private Map<String,Pair<Class<?>, Object>> parameters= new HashMap<String,Pair<Class<?>, Object>>();
+	private Map<String,ImmutablePair<Class<?>, Object>> parameters= new HashMap<String,ImmutablePair<Class<?>, Object>>();
 
 	@Override
-	public String toString() {
-		StringBuilder returnStr= new StringBuilder("Parameters[");
-		for (Entry<String, Pair<Class<?>, Object>> entry : parameters.entrySet()) {
-			returnStr.append(entry.getKey()).append("= ").append(entry.getValue().getRight().toString()).append("; ");
-		}
-		return returnStr.append("]").toString();
-
-	}
-
-	public void print() {
-		System.out.print(this.toString());
+	public Map<String, ImmutablePair<Class<?>, Object>> getParameters() {
+		return parameters;
 	}
 
 	@Override
-	public <T> void setParameter(String name, Class<T> type, T value) {
+	public ParameterContainable mergeParameters(ParameterContainable more) {
+		parameters.putAll(more.getParameters());
+		return this;
+	}
+
+	@Override
+	public <T> ParameterSet setParameter(String name, Class<T> type, T value) {
 		if (name.length() == 0 || type==null) {
 			throw new InvalidParameterException();
 		} else {
-			Pair<Class<?>, Object> pair= new MutablePair<Class<?>, Object>(type, value);
+			ImmutablePair<Class<?>, Object> pair= new ImmutablePair<Class<?>, Object>(type, value);
 			parameters.put(name, pair);
 		}
+		return this;
 	}
 
 	@Override
 	public <T> T getParameter(String name, Class<T> type) {
-		Pair<Class<?>, Object> pair= parameters.get(name);
+		ImmutablePair<Class<?>, Object> pair= parameters.get(name);
 		if (pair == null) {
 			return null;
 		}
@@ -59,4 +59,35 @@ public class ParameterSet implements ParameterContainable {
 	public Set<String> getParameterNames() {
 		return parameters.keySet();
 	}
+	/**
+	 * @hidden
+	 */
+	@Override
+	public String toString() {
+		StringBuilder returnStr= new StringBuilder("Parameters[");
+		for (Entry<String, ImmutablePair<Class<?>, Object>> entry : parameters.entrySet()) {
+			returnStr.append(entry.getKey()).append("= ").append(entry.getValue().getRight().toString()).append("; ");
+		}
+		return returnStr.append("]").toString();
+
+	}
+	/**
+	 * @hidden
+	 */
+	public void println() {
+		synchronized(Analyzer.printLineLock) {
+			System.out.println(this.toString());
+		}
+	}
+	/**
+	 * @hidden
+	 */
+	public void print() {
+		synchronized(Analyzer.printLineLock) {
+			System.out.print(this.toString());
+		}
+	}
+
+
+
 }

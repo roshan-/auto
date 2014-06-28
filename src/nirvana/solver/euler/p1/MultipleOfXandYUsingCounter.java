@@ -1,21 +1,23 @@
 package nirvana.solver.euler.p1;
 
 import nirvana.solver.ParameterSet;
+import nirvana.solver.ProblemDefinition;
 
 public class MultipleOfXandYUsingCounter extends
-		MultipleOfXandY {
+		MultipleOfXandYStrategy {
 
-	public MultipleOfXandYUsingCounter(ParameterSet params) {
-		super("Circular Counter", params);
+	public MultipleOfXandYUsingCounter(ProblemDefinition multipleOfXandYProblem) {
+		super("Circular Counter", multipleOfXandYProblem);
 	}
 
 	@Override
-	public void execute() {
+	public void execute(ParameterSet params) {
 		int reset= x*y;
 		int xcount= 1;
 		int ycount= 1;
 		int xycount= 1;
-		for (Long i=1L;i<getInputSize();i++) {
+		long inputSize= params.getParameter("inputSize", Long.class);
+		for (long i=1L;i<inputSize;i++) {
 			if (xycount==reset) {
 				sum= sum+i;
 				xcount= 0;

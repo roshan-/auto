@@ -1,8 +1,14 @@
 package nirvana.solver;
 
+/**
+* @author Roshan Diwakar
+* @notes CircularLinkedList for fast Modular Arithmetic
+* and other uses
+* @composed 1..* has 1..* Node
+*/
 public class CircularList<T> {
-	private Node<T> head= null;
-	private Node<T> tail= null;
+	protected Node<T> head= null;
+	protected Node<T> tail= null;
 
 	public void add(T item) {
 		Node<T> node= new Node<T>();

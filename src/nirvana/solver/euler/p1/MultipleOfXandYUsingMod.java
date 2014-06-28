@@ -1,17 +1,19 @@
 package nirvana.solver.euler.p1;
 
 import nirvana.solver.ParameterSet;
+import nirvana.solver.ProblemDefinition;
 
 public class MultipleOfXandYUsingMod extends
-		MultipleOfXandY {
+		MultipleOfXandYStrategy {
 
-	public MultipleOfXandYUsingMod(ParameterSet params) {
-		super("Math Mod", params);
+	public MultipleOfXandYUsingMod(ProblemDefinition multipleOfXandYProblem) {
+		super("Math Mod", multipleOfXandYProblem);
 	}
 
 	@Override
-	public void execute() {
-		for (Long i=1L;i<getInputSize();i++) {
+	public void execute(ParameterSet params) {
+		long inputSize= params.getParameter("inputSize", Long.class);
+		for (long i=1L;i<inputSize;i++) {
 			if (i%x==0 || i%y==0) {
 				sum= sum+i;
 			}
