@@ -1,0 +1,4 @@
+find . -iname "*.java" -print0 | xargs -0 java -jar /c/64bin/lib/umlgraph/lib/UmlGraph.jar -attributes -operations -types -enumerations -enumconstants  $1 $2 $3 $4
+sed -i 's/<any>/ImmutablePair\&lt;Class, Objecti\&gt;/g' graph.dot
+dot -Tpng -oUML.png graph.dot
+start UML.png
